@@ -1,9 +1,393 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Hustle Theory</title>
-  </head>
-  <body>
-    <h1>hello!</h1>
-  </body>
+<head>
+<title>Hustle Theory</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+margin:0;
+background:#f6f8fb;
+}
+
+/* NAVBAR */
+
+.navbar{
+background:#1f2937;
+color:white;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+}
+
+.nav-links a{
+margin-left:20px;
+color:white;
+text-decoration:none;
+}
+
+.nav-links button{
+margin-left:20px;
+padding:6px 12px;
+border:none;
+background:#ef4444;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+.nav-links a:hover{
+text-decoration:underline;
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:80px 20px;
+background:linear-gradient(135deg,#4f46e5,#06b6d4);
+color:white;
+}
+
+.hero h1{
+font-size:48px;
+}
+
+.hero p{
+max-width:500px;
+margin:auto;
+}
+
+.hero button{
+margin:10px;
+padding:12px 25px;
+border:none;
+border-radius:6px;
+background:white;
+color:#333;
+font-size:16px;
+cursor:pointer;
+}
+
+.hero button:hover{
+background:#ddd;
+}
+
+.tracker-btn{
+background:#22c55e !important;
+color:white !important;
+}
+
+.tracker-btn:hover{
+background:#16a34a !important;
+}
+
+/* PROGRESS */
+
+.progress{
+text-align:center;
+padding:50px;
+}
+
+.progress-bar{
+width:60%;
+margin:auto;
+background:#e5e7eb;
+height:25px;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-fill{
+width:0%;
+height:100%;
+background:#22c55e;
+}
+
+/* MODULES */
+
+.modules{
+padding:40px;
+}
+
+.modules h2{
+text-align:center;
+}
+
+.module-container{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
+.card{
+background:white;
+width:220px;
+padding:20px;
+margin:15px;
+border-radius:12px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card button{
+margin-top:10px;
+padding:8px 15px;
+border:none;
+background:#4f46e5;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+/* BADGES */
+
+.badges{
+text-align:center;
+padding:50px;
+background:#eef2ff;
+}
+
+.badge{
+display:inline-block;
+background:white;
+padding:15px 25px;
+margin:10px;
+border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* FOOTER */
+
+footer{
+background:#1f2937;
+color:white;
+text-align:center;
+padding:25px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div><b>Hustle Theory</b></div>
+
+<div class="nav-links">
+<a href="#">Home</a>
+<a href="#">Modules</a>
+<a href="#">Progress</a>
+<a href="#">About</a>
+<button onclick="logout()">Logout</button>
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1>Hustle Theory</h1>
+<h2 id="welcomeUser"></h2>
+<h3>Financial Literacy Made Fun for Teens</h3>
+
+<p>
+Learn how to earn, save, invest, and stay safe with money
+through games and quizzes.
+</p>
+
+<button class="tracker-btn" onclick="openTracker()">
+📊 Track My Finances
+</button>
+
+<button onclick="startModule(1)">Start Learning</button>
+
+</div>
+
+<!-- PROGRESS -->
+
+<div class="progress">
+
+<h2>Your Progress</h2>
+
+<p id="progressText">Progress: 0% Completed</p>
+
+<div class="progress-bar">
+<div class="progress-fill"></div>
+</div>
+
+</div>
+
+<!-- MODULES -->
+
+<div class="modules">
+
+<h2>Learning Modules</h2>
+
+<div class="module-container">
+
+<div class="card">
+<h3>💰 Income & Expenses</h3>
+<p>Learn how money comes and goes.</p>
+<p id="status1">Unlocked ✅</p>
+<button onclick="startModule(1)">Start</button>
+</div>
+
+<div class="card">
+<h3>📈 Investments</h3>
+<p>Understand how money grows.</p>
+<p id="status2">Locked 🔒</p>
+<button onclick="startModule(2)">Start</button>
+</div>
+
+<div class="card">
+<h3>🛡 Insurance</h3>
+<p>Protect yourself from risks.</p>
+<p id="status3">Locked 🔒</p>
+<button onclick="startModule(3)">Start</button>
+</div>
+
+<div class="card">
+<h3>🏛 Taxes</h3>
+<p>Learn why we pay taxes.</p>
+<p id="status4">Locked 🔒</p>
+<button onclick="startModule(4)">Start</button>
+</div>
+
+<div class="card">
+<h3>⚠ Financial Scams</h3>
+<p>Stay safe from fraud.</p>
+<p id="status5">Locked 🔒</p>
+<button onclick="startModule(5)">Start</button>
+</div>
+
+</div>
+</div>
+
+<!-- BADGES -->
+
+<div class="badges">
+
+<h2>Rewards & Badges</h2>
+
+<div id="badgeContainer">
+<p>No badges yet. Complete modules to unlock rewards!</p>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>Hustle Theory – Financial Literacy for Teens</p>
+
+<p>College Project | 2026</p>
+
+<p>© 2026 Hustle Theory</p>
+
+</footer>
+
+<script>
+
+/* Logged in user */
+
+let user = localStorage.getItem("loggedInUser");
+
+if(user){
+document.getElementById("welcomeUser").innerText =
+"Welcome, " + user + " 👋";
+}
+
+/* Logout */
+
+function logout(){
+localStorage.removeItem("loggedInUser");
+window.location.href="login.html";
+}
+
+/* Module Progress */
+
+let completedModules = localStorage.getItem("modulesCompleted");
+
+if(!completedModules){
+completedModules = 0;
+}else{
+completedModules = parseInt(completedModules);
+}
+
+/* Progress Bar */
+
+let progress = completedModules * 20;
+
+document.querySelector(".progress-fill").style.width = progress + "%";
+
+document.getElementById("progressText").innerText =
+"Progress: " + progress + "% Completed";
+
+/* Unlock Modules */
+
+for(let i=2;i<=5;i++){
+
+if(i <= completedModules + 1){
+document.getElementById("status"+i).innerText="Unlocked ✅";
+}
+
+}
+
+/* Start Module */
+
+function startModule(moduleNumber){
+
+if(moduleNumber <= completedModules + 1){
+
+window.location.href = "module" + moduleNumber + ".html";
+
+}else{
+
+alert("Complete previous module first!");
+
+}
+
+}
+
+/* Badge System */
+
+let badgeContainer = document.getElementById("badgeContainer");
+
+if(completedModules >= 1){
+badgeContainer.innerHTML +=
+'<div class="badge">🏆 Budget Boss</div>';
+}
+
+if(completedModules >= 3){
+badgeContainer.innerHTML +=
+'<div class="badge">💰 Smart Investor</div>';
+}
+
+if(completedModules == 5){
+badgeContainer.innerHTML +=
+'<div class="badge">🛡 Scam Shield</div>';
+}
+
+/* Finance Tracker */
+
+function openTracker(){
+window.location.href="tracker.html";
+}
+
+</script>
+
+</body>
 </html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Login | Hustle Theory</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#4f46e5,#06b6d4);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Login Card */
+
+.login-box{
+    background:white;
+    padding:40px;
+    width:320px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.login-box h1{
+    margin-bottom:10px;
+}
+
+.login-box p{
+    color:#555;
+    font-size:14px;
+}
+
+/* Input Fields */
+
+input{
+    width:90%;
+    padding:10px;
+    margin-top:15px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+/* Button */
+
+button{
+    width:95%;
+    padding:10px;
+    margin-top:20px;
+    background:#4f46e5;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#4338ca;
+}
+
+/* Link */
+
+.signup{
+    margin-top:15px;
+    font-size:14px;
+}
+
+.signup a{
+    text-decoration:none;
+    color:#4f46e5;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h1>Hustle Theory</h1>
+<p>Login to start your learning journey</p>
+
+<form onsubmit="login(); return false;">
+
+<input type="text" id="loginUser" placeholder="Username">
+
+<input type="password" id="loginPass" placeholder="Password">
+
+<button type="submit">Login</button>
+
+</form>
+
+<div class="signup">
+<a href="signup.html">Create Account</a></div>
+
+</div>
+
+<script>
+
+function login(){
+
+let user = document.getElementById("loginUser").value;
+let pass = document.getElementById("loginPass").value;
+
+let savedUser = localStorage.getItem("username");
+let savedPass = localStorage.getItem("password");
+
+if(user === savedUser && pass === savedPass){
+localStorage.setItem("loggedInUser", user);
+alert("Login successful!");
+window.location.href="index.html";
+}
+else{
+alert("Invalid username or password");
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

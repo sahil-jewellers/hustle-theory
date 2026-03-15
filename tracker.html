@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Savings Planner | Hustle Theory</title>
+
+<style>
+
+body{
+font-family:Arial, sans-serif;
+margin:0;
+background:linear-gradient(135deg,#4f46e5,#06b6d4);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.card{
+background:white;
+width:420px;
+padding:30px;
+border-radius:14px;
+box-shadow:0 15px 30px rgba(0,0,0,0.25);
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+.display{
+background:#111827;
+color:#22c55e;
+padding:18px;
+border-radius:8px;
+font-size:22px;
+margin-bottom:25px;
+text-align:right;
+font-weight:bold;
+}
+
+label{
+font-size:14px;
+font-weight:bold;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin-top:6px;
+margin-bottom:15px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#4f46e5;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#4338ca;
+}
+
+.result{
+margin-top:20px;
+background:#f1f5f9;
+padding:15px;
+border-radius:8px;
+display:none;
+}
+
+.progress{
+margin-top:10px;
+height:12px;
+background:#ddd;
+border-radius:10px;
+overflow:hidden;
+}
+
+.bar{
+height:100%;
+width:0%;
+background:#22c55e;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>💰 Savings Planner</h2>
+
+<div class="display" id="display">₹0.00</div>
+
+<label>🛒 What do you want to buy?</label>
+<input type="text" id="item" placeholder="Example: Headphones">
+
+<label>💰 Price of the item (₹)</label>
+<input type="number" id="price" placeholder="Example: 3000">
+
+<label>🪙 Your allowance</label>
+<input type="number" id="allowance" placeholder="Example: 100">
+
+<select id="allowanceType">
+<option value="daily">Daily allowance</option>
+<option value="weekly">Weekly allowance</option>
+<option value="monthly">Monthly allowance</option>
+</select>
+
+<label>⏳ Time to reach your goal</label>
+<input type="number" id="time" placeholder="Example: 30">
+
+<select id="timeType">
+<option value="days">Days</option>
+<option value="weeks">Weeks</option>
+<option value="months">Months</option>
+</select>
+
+<button onclick="calculate()">Calculate My Savings Plan</button>
+
+<div class="result" id="result">
+
+<p id="summary"></p>
+
+<p id="saveDaily"></p>
+<p id="saveWeekly"></p>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculate(){
+
+let item=document.getElementById("item").value;
+let price=parseFloat(document.getElementById("price").value);
+let allowance=parseFloat(document.getElementById("allowance").value);
+let allowanceType=document.getElementById("allowanceType").value;
+let time=parseFloat(document.getElementById("time").value);
+let timeType=document.getElementById("timeType").value;
+
+if(!price || !time){
+alert("Please enter price and time");
+return;
+}
+
+/* Convert time to days */
+
+let days=time;
+
+if(timeType=="weeks") days=time*7;
+if(timeType=="months") days=time*30;
+
+/* savings required */
+
+let perDay=price/days;
+let perWeek=perDay*7;
+
+document.getElementById("display").innerText="₹"+price;
+
+document.getElementById("summary").innerHTML=
+"<b>Goal:</b> "+item+"<br><b>Price:</b> ₹"+price;
+
+document.getElementById("saveDaily").innerText=
+"You must save ₹"+perDay.toFixed(2)+" per day";
+
+document.getElementById("saveWeekly").innerText=
+"or ₹"+perWeek.toFixed(2)+" per week";
+
+document.getElementById("result").style.display="block";
+
+/* progress animation */
+
+document.getElementById("bar").style.width="100%";
+
+}
+
+</script>
+
+</body>
+</html>
