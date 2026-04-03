@@ -1,0 +1,17 @@
+# Database
+hustle_theory.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Virtual environments
+.venv
+pip-log.txt
+pip-delete-this-directory.txt

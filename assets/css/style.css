@@ -411,3 +411,120 @@ body.tracker-page {
   width: 0%;
   background: #22c55e;
 }
+
+/* Module 2-5 Shared Styles */
+.container {
+  width: 100%;
+  max-width: 720px;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.progress {
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #22c55e;
+  transition: width 0.3s ease;
+}
+
+.container button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #4f46e5;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.container button:hover {
+  background: #4338ca;
+}
+
+.container h1,
+.container h2 {
+  text-align: center;
+  color: #1f2937;
+}
+
+.badge {
+  font-size: 70px;
+  margin: 20px 0;
+  animation: popBadge 0.6s ease;
+}
+
+/* Module 2 - Investment Simulator */
+.simulator {
+  background: #f0fdf4;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.simulator input {
+  width: 80px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 0 5px;
+}
+
+#simResult {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #16a34a;
+}
+
+/* Module 3 - Insurance Scenario */
+.scenario {
+  background: #fef3c7;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border-left: 4px solid #f59e0b;
+}
+
+/* Module 4 - Tax Calculator */
+.tax-calculator {
+  background: #ede9fe;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.tax-calculator input {
+  width: 150px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+#taxResult {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #7c3aed;
+}
+
+/* Module 5 - Scam Example */
+.scam-example {
+  background: #fee2e2;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border-left: 4px solid #ef4444;
+}

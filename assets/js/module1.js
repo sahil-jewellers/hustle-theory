@@ -62,8 +62,7 @@ like entertainment, gaming, dining out and shopping.</p>
 <button onclick="nextStep()">Continue</button>
 
 `;
-  }
-   else if (step == 6) {
+  } else if (step == 6) {
     content.innerHTML = `
 <h2>Quiz</h2>
 <p>According to the 50-30-20 rule, how much should go to savings?</p>
@@ -147,6 +146,47 @@ function unlockNext() {
 }
 
 function completeModule() {
-  localStorage.setItem("modulesCompleted", 1);
-  window.location.href = "index.html";
+  const API_URL = "http://localhost:5000/api";
+  const userId = localStorage.getItem("userId");
+
+  // Save progress to database
+  fetch(`${API_URL}/progress`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user_id: parseInt(userId),
+      module_id: 1,
+      completed: true,
+      score: 100,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Progress saved:", data);
+
+      // Award badge
+      return fetch(`${API_URL}/badges`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: parseInt(userId),
+          badge_name: "🏆 Budget Boss",
+        }),
+      });
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Badge awarded:", data);
+      window.location.href = "../index.html";
+    })
+    .catch((error) => {
+      console.error("Error saving progress:", error);
+      // Fallback to localStorage if server is down
+      localStorage.setItem("modulesCompleted", 1);
+      window.location.href = "../index.html";
+    });
 }
