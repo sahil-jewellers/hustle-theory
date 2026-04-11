@@ -1,9 +1,11 @@
-/* Dashboard - Connected to Database */
+/* Dashboard - Using relative API path (works with or without server) */
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "/api";
 let userId = localStorage.getItem("userId");
 let user = localStorage.getItem("loggedInUser");
-let completedModules = 0;
+let completedModules = parseInt(
+  localStorage.getItem("completedModules") || "0",
+);
 
 // Check if user is logged in
 if (!user || !userId) {
@@ -18,10 +20,11 @@ if (user) {
 function logout() {
   localStorage.removeItem("loggedInUser");
   localStorage.removeItem("userId");
+  localStorage.removeItem("completedModules");
   window.location.href = "auth.html";
 }
 
-// Load user progress from database
+// Load user progress from server or localStorage
 async function loadProgress() {
   try {
     const response = await fetch(`${API_URL}/progress/${userId}`);
@@ -29,61 +32,77 @@ async function loadProgress() {
 
     // Calculate completed modules
     completedModules = progressData.filter((p) => p.completed).length;
-
-    // Update progress bar
-    let progress = completedModules * 20;
-    document.querySelector(".progress-fill").style.width = progress + "%";
-    document.getElementById("progressText").innerText =
-      "Progress: " + progress + "% Completed";
-
-    // Unlock modules
-    for (let i = 2; i <= 5; i++) {
-      if (i <= completedModules + 1) {
-        document.getElementById("status" + i).innerText = "Unlocked ✅";
-      }
-    }
-
-    // Load badges
-    await loadBadges();
+    localStorage.setItem("completedModules", completedModules);
   } catch (error) {
-    console.error("Error loading progress:", error);
-    // Fallback to local mode if server is down
-    completedModules = parseInt(localStorage.getItem("modulesCompleted") || 0);
+    console.log("Server unavailable, using localStorage");
+    // Use localStorage if server is down
+    completedModules = parseInt(
+      localStorage.getItem("completedModules") || "0",
+    );
   }
+
+  // Update progress bar
+  let progress = completedModules * 20;
+  document.querySelector(".progress-fill").style.width = progress + "%";
+  document.getElementById("progressText").innerText =
+    "Progress: " + progress + "% Completed";
+
+  // Unlock modules based on completed modules
+  for (let i = 2; i <= 5; i++) {
+    if (i <= completedModules + 1) {
+      document.getElementById("status" + i).innerText = "Unlocked ✅";
+      document.getElementById("status" + i).style.color = "#228B22";
+    }
+  }
+
+  // Load badges
+  await loadBadges();
 }
 
-// Load badges from database
+// Load badges from server or localStorage
 async function loadBadges() {
+  let badgeContainer = document.getElementById("badgeContainer");
+  badgeContainer.innerHTML = "";
+
   try {
     const response = await fetch(`${API_URL}/badges/${userId}`);
     const badges = await response.json();
-
-    let badgeContainer = document.getElementById("badgeContainer");
 
     if (badges.length === 0) {
       badgeContainer.innerHTML =
         "<p>No badges yet. Complete modules to unlock rewards!</p>";
     } else {
-      badgeContainer.innerHTML = "";
       badges.forEach((badge) => {
         badgeContainer.innerHTML += `<div class="dashboard-badge">${badge.badge_name}</div>`;
       });
     }
   } catch (error) {
-    console.error("Error loading badges:", error);
-    // Fallback to local display
-    let badgeContainer = document.getElementById("badgeContainer");
+    console.log("Loading badges from localStorage");
+    // Fallback to local display based on completedModules
     if (completedModules >= 1) {
       badgeContainer.innerHTML +=
         '<div class="dashboard-badge">🏆 Budget Boss</div>';
     }
-    if (completedModules >= 3) {
+    if (completedModules >= 2) {
       badgeContainer.innerHTML +=
         '<div class="dashboard-badge">💰 Smart Investor</div>';
     }
-    if (completedModules == 5) {
+    if (completedModules >= 3) {
       badgeContainer.innerHTML +=
-        '<div class="dashboard-badge">🛡 Scam Shield</div>';
+        '<div class="dashboard-badge">🛡️ Risk Manager</div>';
+    }
+    if (completedModules >= 4) {
+      badgeContainer.innerHTML +=
+        '<div class="dashboard-badge">🧾 Tax Ninja</div>';
+    }
+    if (completedModules >= 5) {
+      badgeContainer.innerHTML +=
+        '<div class="dashboard-badge">🛡️ Scam Shield</div>';
+    }
+
+    if (completedModules === 0) {
+      badgeContainer.innerHTML =
+        "<p>No badges yet. Complete modules to unlock rewards!</p>";
     }
   }
 }
@@ -92,7 +111,7 @@ function startModule(moduleNumber) {
   if (moduleNumber <= completedModules + 1) {
     window.location.href = "modules/module" + moduleNumber + ".html";
   } else {
-    alert("Complete previous module first!");
+    alert("Complete previous modules first! 📚");
   }
 }
 

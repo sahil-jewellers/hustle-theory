@@ -1,60 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<title>Savings Planner | Hustle Theory</title>
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
+  <head>
+    <title>Savings Planner | Hustle Theory</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
 
-<body class="tracker-page">
+  <body class="tracker-page">
+    <!-- Smart Owl Mascot -->
+    <div class="mascot bottom-right" onclick="mascotSpeak()">
+      <div class="mascot-icon">🦉</div>
+    </div>
 
-<div class="tracker-card">
+    <div class="tracker-card">
+      <h2>💰 Savings Planner</h2>
 
-<h2>💰 Savings Planner</h2>
+      <div class="display" id="display">₹0.00</div>
 
-<div class="display" id="display">₹0.00</div>
+      <label>🛒 What do you want to buy?</label>
+      <input type="text" id="item" placeholder="Example: Headphones" />
 
-<label>🛒 What do you want to buy?</label>
-<input type="text" id="item" placeholder="Example: Headphones">
+      <label>💰 Price of the item (₹)</label>
+      <input type="number" id="price" placeholder="Example: 3000" />
 
-<label>💰 Price of the item (₹)</label>
-<input type="number" id="price" placeholder="Example: 3000">
+      <label>🪙 Your allowance</label>
+      <input type="number" id="allowance" placeholder="Example: 100" />
 
-<label>🪙 Your allowance</label>
-<input type="number" id="allowance" placeholder="Example: 100">
+      <select id="allowanceType">
+        <option value="daily">Daily allowance</option>
+        <option value="weekly">Weekly allowance</option>
+        <option value="monthly">Monthly allowance</option>
+      </select>
 
-<select id="allowanceType">
-<option value="daily">Daily allowance</option>
-<option value="weekly">Weekly allowance</option>
-<option value="monthly">Monthly allowance</option>
-</select>
+      <label>⏳ Time to reach your goal</label>
+      <input type="number" id="time" placeholder="Example: 30" />
 
-<label>⏳ Time to reach your goal</label>
-<input type="number" id="time" placeholder="Example: 30">
+      <select id="timeType">
+        <option value="days">Days</option>
+        <option value="weeks">Weeks</option>
+        <option value="months">Months</option>
+      </select>
 
-<select id="timeType">
-<option value="days">Days</option>
-<option value="weeks">Weeks</option>
-<option value="months">Months</option>
-</select>
+      <button onclick="calculate()">Calculate My Savings Plan</button>
 
-<button onclick="calculate()">Calculate My Savings Plan</button>
+      <div class="result" id="result">
+        <p id="summary"></p>
 
-<div class="result" id="result">
+        <p id="saveDaily"></p>
+        <p id="saveWeekly"></p>
 
-<p id="summary"></p>
+        <div class="tracker-progress">
+          <div class="tracker-bar" id="bar"></div>
+        </div>
+      </div>
+    </div>
 
-<p id="saveDaily"></p>
-<p id="saveWeekly"></p>
-
-<div class="tracker-progress">
-<div class="tracker-bar" id="bar"></div>
-</div>
-
-</div>
-
-</div>
-
-<script src="assets/js/tracker.js"></script>
-
-</body>
+    <script src="assets/js/tracker.js"></script>
+    <script>
+      function mascotSpeak() {
+        const messages = [
+          "Every rupee counts! 💰",
+          "Save smart, earn big! 📈",
+          "Your goal is within reach! 🎯",
+          "Financial discipline wins! 💪",
+          "Keep saving! You're awesome! 🌟"
+        ];
+        alert(messages[Math.floor(Math.random() * messages.length)]);
+      }
+    </script>
+  </body>
 </html>

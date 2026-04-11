@@ -34,6 +34,7 @@ for table in tables:
     print(f"\nTotal rows: {count}")
     print()
 
+
 conn.close()
 
 print("=" * 50)

@@ -1,19 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<title>Investments | Hustle Theory</title>
-<link rel="stylesheet" href="../assets/css/style.css" />
-</head>
-<body class="module-page">
-<div class="container">
-<div class="progress"><div class="progress-bar" id="lessonProgress"></div></div>
-<div id="lessonContent">
-<h1>📈 Investments</h1>
-<p>Investing means putting your money to work so it grows over time. Instead of letting money sit idle, you invest it in assets like stocks, mutual funds, or fixed deposits to earn returns.</p>
-<p>The earlier you start investing, the more your money can grow through the power of compound interest.</p>
-<button onclick="nextStep()">Start Lesson</button>
-</div>
-</div>
-<script src="../assets/js/module2.js"></script>
-</body>
+  <head>
+    <title>Investments | Hustle Theory</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body class="module-page">
+    <!-- Smart Owl Mascot -->
+    <div class="mascot bottom-right" onclick="mascotSpeak()">
+      <div class="mascot-icon">🦉</div>
+    </div>
+    <div class="container">
+      <div class="progress">
+        <div class="progress-bar" id="lessonProgress"></div>
+      </div>
+      <div id="lessonContent">
+        <h1>📈 Investments</h1>
+        <p>
+          Investing means putting your money to work so it grows over time.
+          Instead of letting money sit idle, you invest it in assets like
+          stocks, mutual funds, or fixed deposits to earn returns.
+        </p>
+        <p
+          style="
+            background: #ffe4e1;
+            padding: 15px;
+            border-radius: 10px;
+            color: #4a148c;
+            font-weight: bold;
+          "
+        >
+          💡 Tip: The earlier you start investing, the more your money can grow!
+        </p>
+        <div
+          style="
+            background: #e0ffe0;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 3px solid #90ee90;
+          "
+        >
+          <h3 style="color: #228b22">💰 Investment Calculator 🎮</h3>
+          <p>
+            Initial amount:
+            <input
+              type="number"
+              id="principal"
+              placeholder="e.g., 1000"
+              style="
+                width: 100px;
+                padding: 5px;
+                border: 2px solid #90ee90;
+                border-radius: 5px;
+              "
+            />
+          </p>
+          <p>
+            Annual interest rate (%):<input
+              type="number"
+              id="rate"
+              placeholder="e.g., 8"
+              style="
+                width: 100px;
+                padding: 5px;
+                border: 2px solid #90ee90;
+                border-radius: 5px;
+              "
+            />
+          </p>
+          <p>
+            Years:
+            <input
+              type="number"
+              id="years"
+              placeholder="e.g., 10"
+              style="
+                width: 100px;
+                padding: 5px;
+                border: 2px solid #90ee90;
+                border-radius: 5px;
+              "
+            />
+          </p>
+          <button
+            onclick="calculateInvestment()"
+            style="
+              background: #90ee90;
+              color: #228b22;
+              border: 2px solid #228b22;
+              padding: 8px 15px;
+              border-radius: 8px;
+              font-weight: bold;
+              cursor: pointer;
+            "
+          >
+            Calculate Growth!
+          </button>
+          <p
+            id="investmentResult"
+            style="
+              color: #228b22;
+              font-size: 16px;
+              font-weight: bold;
+              background: #f0fff0;
+              padding: 10px;
+              border-radius: 8px;
+            "
+          ></p>
+        </div>
+        <button onclick="nextStep()" style="margin-top: 20px">
+          Continue Lesson →
+        </button>
+      </div>
+    </div>
+    <script src="../assets/js/module2.js"></script>
+    <script>
+      function calculateInvestment() {
+        const principal = parseFloat(document.getElementById('principal').value);
+        const rate = parseFloat(document.getElementById('rate').value);
+        const years = parseFloat(document.getElementById('years').value);
+        
+        if (isNaN(principal) || isNaN(rate) || isNaN(years)) {
+          document.getElementById('investmentResult').innerHTML = '❌ Please enter valid numbers!';
+          return;
+        }
+        
+        const amount = principal * Math.pow(1 + rate / 100, years);
+        const profit = amount - principal;
+        document.getElementById('investmentResult').innerHTML = 
+          `💰 Your ₹${principal} will grow to <strong>₹${amount.toFixed(2)}</strong>!<br>That's ₹${profit.toFixed(2)} profit! 🎉`;
+      }
+
+      function mascotSpeak() {
+        const messages = [
+          "Investing is cool! Let your money grow! 📈",
+          "Compound interest is your best friend! 💰",
+          "Start investing early! 🚀",
+          "Smart money grows faster! 💡",
+          "You're becoming a financial genius! 🌟",
+        ];
+        alert(messages[Math.floor(Math.random() * messages.length)]);
+      }
+    </script>
+  </body>
 </html>
