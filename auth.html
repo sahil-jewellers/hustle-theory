@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body class="auth-page">
+    <!-- Smart Owl Mascot -->
+    <div class="mascot" style="top: 30px; left: 30px" onclick="mascotSpeak()">
+      <div class="mascot-icon">🦉</div>
+    </div>
+
     <div class="auth-box">
       <div id="loginView" class="auth-view active">
         <h1>Hustle Theory</h1>
@@ -34,5 +39,17 @@
       </div>
     </div>
     <script src="assets/js/auth.js"></script>
+    <script>
+      function mascotSpeak() {
+        const messages = [
+          "Welcome! Let's learn about money! 💰",
+          "Create an account to get started! 🚀",
+          "Financial knowledge is power! 💪",
+          "Let's make smart choices! 💡",
+          "Ready to hustle? 🌟"
+        ];
+        alert(messages[Math.floor(Math.random() * messages.length)]);
+      }
+    </script>
   </body>
 </html>

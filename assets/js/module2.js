@@ -1,6 +1,5 @@
-/* Module 2 - Investments - Connected to Database */
+/* Module 2 - Investments - Using relative API path (works with or without server) */
 
-const API_URL = "http://localhost:5000/api";
 let step = 0;
 
 function updateProgress() {
@@ -147,8 +146,15 @@ function unlockNext() {
 }
 
 function completeModule() {
+  const API_URL = "/api";
   const userId = localStorage.getItem("userId");
 
+  // Update completed modules in localStorage first
+  let completed = parseInt(localStorage.getItem("completedModules") || "0");
+  completed++;
+  localStorage.setItem("completedModules", completed);
+
+  // Try to save to server if available
   fetch(`${API_URL}/progress`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -161,7 +167,7 @@ function completeModule() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Progress saved:", data);
+      console.log("Progress saved to server:", data);
       return fetch(`${API_URL}/badges`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -177,7 +183,7 @@ function completeModule() {
       window.location.href = "../index.html";
     })
     .catch((error) => {
-      console.error("Error saving progress:", error);
+      console.log("Server unavailable, using localStorage only");
       window.location.href = "../index.html";
     });
 }

@@ -146,10 +146,15 @@ function unlockNext() {
 }
 
 function completeModule() {
-  const API_URL = "http://localhost:5000/api";
+  const API_URL = "/api";
   const userId = localStorage.getItem("userId");
 
-  // Save progress to database
+  // Update completed modules in localStorage first
+  let completed = parseInt(localStorage.getItem("completedModules") || "0");
+  completed++;
+  localStorage.setItem("completedModules", completed);
+
+  // Try to save to server if available
   fetch(`${API_URL}/progress`, {
     method: "POST",
     headers: {
@@ -164,7 +169,7 @@ function completeModule() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Progress saved:", data);
+      console.log("Progress saved to server:", data);
 
       // Award badge
       return fetch(`${API_URL}/badges`, {
@@ -184,9 +189,8 @@ function completeModule() {
       window.location.href = "../index.html";
     })
     .catch((error) => {
-      console.error("Error saving progress:", error);
-      // Fallback to localStorage if server is down
-      localStorage.setItem("modulesCompleted", 1);
+      console.log("Server unavailable, using localStorage only");
+      // Redirect anyway since localStorage was updated
       window.location.href = "../index.html";
     });
 }

@@ -1,19 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<title>Financial Scams & Safety | Hustle Theory</title>
-<link rel="stylesheet" href="../assets/css/style.css" />
-</head>
-<body class="module-page">
-<div class="container">
-<div class="progress"><div class="progress-bar" id="lessonProgress"></div></div>
-<div id="lessonContent">
-<h1>⚠️ Financial Scams & Safety</h1>
-<p>In the digital age, financial scams are common and can cause serious harm. Learning to recognize and avoid scams is essential to protect your hard-earned money.</p>
-<p>This module will teach you how to spot scams and stay safe online.</p>
-<button onclick="nextStep()">Start Lesson</button>
-</div>
-</div>
-<script src="../assets/js/module5.js"></script>
-</body>
+  <head>
+    <title>Financial Scams & Safety | Hustle Theory</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body class="module-page">
+    <!-- Smart Owl Mascot -->
+    <div class="mascot bottom-right" onclick="mascotSpeak()">
+      <div class="mascot-icon">🦉</div>
+    </div>
+    <div class="container">
+      <div class="progress">
+        <div class="progress-bar" id="lessonProgress"></div>
+      </div>
+      <div id="lessonContent">
+        <h1>⚠️ Financial Scams & Safety</h1>
+        <p>
+          In the digital age, financial scams are common and can cause serious
+          harm. Learning to recognize and avoid scams is essential to protect
+          your hard-earned money.
+        </p>
+        <p
+          style="
+            background: #ffe4e4;
+            padding: 15px;
+            border-radius: 10px;
+            color: #4a148c;
+            font-weight: bold;
+          "
+        >
+          💡 Stay alert and never share personal information!
+        </p>
+        <div
+          style="
+            background: #ffc0cb;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 3px solid #ff69b4;
+          "
+        >
+          <h3 style="color: #4a148c">🚨 Spot the Scam 🎮</h3>
+          <button
+            onclick="showScam()"
+            style="
+              background: #ff6b6b;
+              color: white;
+              border: 2px solid #c92a2a;
+              padding: 8px 15px;
+              border-radius: 8px;
+              font-weight: bold;
+              cursor: pointer;
+            "
+          >
+            See a Scam Example!
+          </button>
+          <p
+            id="scamExample"
+            style="
+              background: #ffe4e4;
+              padding: 15px;
+              border-radius: 8px;
+              color: #4a148c;
+              margin-top: 10px;
+              font-weight: bold;
+            "
+          ></p>
+        </div>
+        <button onclick="nextStep()" style="margin-top: 20px">
+          Continue Lesson →
+        </button>
+      </div>
+    </div>
+    <script src="../assets/js/module5.js"></script>
+    <script>
+      function showScam() {
+        const scams = [
+          "🎣 PHISHING: You get an email saying 'Your bank account is locked! Click here to verify!' (FAKE!) Real banks never ask for passwords via email!",
+          "🎁 TOO GOOD TO BE TRUE: 'You won ₹10,00,000! Send ₹500 to claim it!' (SCAM!) Real lotteries don't ask you to pay first!",
+          "👤 IMPERSONATION: Someone on WhatsApp says 'Hi Mom, I lost my phone, send me money!' But it's not really your mom!",
+          "💳 CREDIT CARD SCAM: 'Enter your card details to verify!' Never share your PIN or CVV with anyone!",
+          "📱 FAKE APP: You download an app that looks like your bank but it STEALS your money! Always download from official sources!"
+        ];
+        const scam = scams[Math.floor(Math.random() * scams.length)];
+        document.getElementById('scamExample').innerHTML = `⚠️ SCAM ALERT: ${scam}<br><br>✅ How to stay safe: Be suspicious of unexpected messages, never share personal info, and always verify with official sources!`;
+      }
+
+      function mascotSpeak() {
+        const messages = [
+          "Stay safe online! Never trust strangers! 🛡️",
+          "If it seems too good, it probably is! ⚠️",
+          "Scams are sneaky - stay alert! 🧠",
+          "Protect yourself and your money! 💰",
+          "You're learning to be safe! 🌟",
+        ];
+        alert(messages[Math.floor(Math.random() * messages.length)]);
+      }
+    </script>
+  </body>
 </html>

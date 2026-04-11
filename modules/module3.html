@@ -1,19 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<title>Insurance | Hustle Theory</title>
-<link rel="stylesheet" href="../assets/css/style.css" />
-</head>
-<body class="module-page">
-<div class="container">
-<div class="progress"><div class="progress-bar" id="lessonProgress"></div></div>
-<div id="lessonContent">
-<h1>🛡️ Insurance</h1>
-<p>Insurance is a way to protect yourself financially against unexpected events like accidents, illness, or property damage. You pay a small regular amount (premium) and in return, the insurance company covers large costs when something goes wrong.</p>
-<p>Think of it as a safety net for your finances.</p>
-<button onclick="nextStep()">Start Lesson</button>
-</div>
-</div>
-<script src="../assets/js/module3.js"></script>
-</body>
+  <head>
+    <title>Insurance | Hustle Theory</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body class="module-page">
+    <!-- Smart Owl Mascot -->
+    <div class="mascot bottom-right" onclick="mascotSpeak()">
+      <div class="mascot-icon">🦉</div>
+    </div>
+    <div class="container">
+      <div class="progress">
+        <div class="progress-bar" id="lessonProgress"></div>
+      </div>
+      <div id="lessonContent">
+        <h1>🛡️ Insurance</h1>
+        <p>
+          Insurance is a way to protect yourself financially against unexpected
+          events like accidents, illness, or property damage. You pay a small
+          regular amount (premium) and in return, the insurance company covers
+          large costs when something goes wrong.
+        </p>
+        <p
+          style="
+            background: #ffffe0;
+            padding: 15px;
+            border-radius: 10px;
+            color: #4a148c;
+            font-weight: bold;
+          "
+        >
+          💡 Think of it as a safety net for your finances!
+        </p>
+        <div
+          style="
+            background: #fff8dc;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 3px solid #ffd700;
+          "
+        >
+          <h3 style="color: #4a148c">🛡️ Insurance Scenarios 🎮</h3>
+          <button
+            onclick="showScenario()"
+            style="
+              background: #ffd700;
+              color: #4a148c;
+              border: 2px solid #ff8c00;
+              padding: 8px 15px;
+              border-radius: 8px;
+              font-weight: bold;
+              cursor: pointer;
+            "
+          >
+            Click to see a scenario!
+          </button>
+          <p
+            id="scenario"
+            style="
+              background: #ffe4e1;
+              padding: 15px;
+              border-radius: 8px;
+              color: #4a148c;
+              margin-top: 10px;
+              font-weight: bold;
+            "
+          ></p>
+        </div>
+        <button onclick="nextStep()" style="margin-top: 20px">
+          Continue Lesson →
+        </button>
+      </div>
+    </div>
+    <script src="../assets/js/module3.js"></script>
+    <script>
+      function showScenario() {
+        const scenarios = [
+          "🏥 Medical Emergency: You broke your leg! Insurance covers ₹50,000 hospital bill instead of you paying from savings!",
+          "🚗 Car Accident: Your car got damaged! Insurance repairs it without emptying your wallet!",
+          "🏠 House Fire: Your home had a small fire. Insurance helps rebuild instead of losing everything!",
+          "⚕️ Health Crisis: You got seriously ill. Insurance pays for treatment so you focus on recovery!"
+        ];
+        const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+        document.getElementById('scenario').innerHTML = scenario;
+      }
+
+      function mascotSpeak() {
+        const messages = [
+          "Insurance is your safety net! 🛡️",
+          "Protect your future today! 💪",
+          "Being prepared is smart! 🧠",
+          "Security matters! Keep learning! 🔒",
+          "You're a financial pro! 🌟",
+        ];
+        alert(messages[Math.floor(Math.random() * messages.length)]);
+      }
+    </script>
+  </body>
 </html>
