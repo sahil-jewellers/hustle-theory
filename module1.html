@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Income & Expenses | Hustle Theory</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body class="module-page">
+    <!-- Smart Owl Mascot -->
+    <div class="mascot bottom-right" onclick="mascotSpeak()">
+      <div class="mascot-icon">🦉</div>
+    </div>
+
+    <div class="lesson-container">
+      <div class="lesson-progress">
+        <div class="lesson-progress-bar" id="lessonProgress"></div>
+      </div>
+      <div id="lessonContent">
+        <h1>💰 Income & Expenses</h1>
+        <p>
+          Income and expenses form the foundation of financial management.
+          Income represents money you earn, while expenses represent money you
+          spend. Tracking the difference between them helps you save money,
+          avoid debt, and plan for future financial goals.
+        </p>
+        <p
+          style="
+            background: #ffe4e1;
+            padding: 15px;
+            border-radius: 10px;
+            color: #4a148c;
+            font-weight: bold;
+          "
+        >
+          💡 Remember: <strong>Savings = Income - Expenses</strong>
+        </p>
+        <div
+          style="
+            background: #fff8dc;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 3px solid #ffd700;
+          "
+        >
+          <h3 style="color: #4a148c">Try it yourself! 🎮</h3>
+          <p>
+            Your income:
+            <input
+              type="number"
+              id="income"
+              placeholder="e.g., 1000"
+              style="
+                width: 100px;
+                padding: 5px;
+                border: 2px solid #ffb6c1;
+                border-radius: 5px;
+              "
+            />
+          </p>
+          <p>
+            Your expenses:
+            <input
+              type="number"
+              id="expenses"
+              placeholder="e.g., 600"
+              style="
+                width: 100px;
+                padding: 5px;
+                border: 2px solid #ffb6c1;
+                border-radius: 5px;
+              "
+            />
+          </p>
+          <button
+            onclick="calculateSavings()"
+            style="
+              background: #ffb347;
+              color: #4a148c;
+              border: 2px solid #ff8c00;
+              padding: 8px 15px;
+              border-radius: 8px;
+              font-weight: bold;
+              cursor: pointer;
+            "
+          >
+            Calculate Savings!
+          </button>
+          <p
+            id="savingsResult"
+            style="color: #228b22; font-size: 18px; font-weight: bold"
+          ></p>
+        </div>
+        <button onclick="nextStep()" style="margin-top: 20px">
+          Continue Lesson →
+        </button>
+      </div>
+    </div>
+    <script src="../assets/js/module1.js"></script>
+    <script>
+      function calculateSavings() {
+        const income = parseFloat(document.getElementById('income').value);
+        const expenses = parseFloat(document.getElementById('expenses').value);
+        
+        if (isNaN(income) || isNaN(expenses)) {
+          document.getElementById('savingsResult').innerHTML = '❌ Please enter valid numbers!';
+          return;
+        }
+        
+        const savings = income - expenses;
+        let message = '';
+        if (savings > 0) {
+          message = `✨ Great! You save ₹${savings}! That's awesome! 🎉`;
+        } else if (savings === 0) {
+          message = `⚠️ You spent everything! Try to save some money! 💡`;
+        } else {
+          message = `😟 Oh no! You spent ₹${Math.abs(savings)} more than you earned!`;
+        }
+        document.getElementById('savingsResult').innerHTML = message;
+      }
+
+      function mascotSpeak() {
+        const messages = [
+          "Income minus expenses equals savings! 💡",
+          "Track your money like a pro! 📊",
+          "Financial knowledge is power! 💪",
+          "You're learning fast! 🚀",
+          "Great job! Keep going! 🌟",
+        ];
+        alert(messages[Math.floor(Math.random() * messages.length)]);
+      }
+    </script>
+  </body>
+</html>
